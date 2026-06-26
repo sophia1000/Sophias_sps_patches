@@ -1,4 +1,9 @@
-﻿# Changelog
+# Changelog
+
+## 1.0.3
+
+- Changed package license to MIT.
+- Added runtime and editor assembly definitions for VPM package compilation.
 
 ## 1.0.2
 

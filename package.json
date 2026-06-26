@@ -1,15 +1,15 @@
 {
     "name":  "com.sophia.sps-patcher",
     "displayName":  "Sophia\u0027s SPS Patcher",
-    "version":  "1.0.2",
+    "version":  "1.0.3",
     "unity":  "2022.3",
     "description":  "Editor-only VRChat avatar SPS patching tools.",
     "author":  {
                    "name":  "Sophia",
                    "email":  "sophia1000@users.noreply.github.com"
                },
-    "license":  "UNLICENSED",
-    "url":  "https://github.com/sophia1000/Sophias_sps_patches/releases/download/1.0.2/com.sophia.sps-patcher-1.0.2.zip",
+    "license":  "MIT",
+    "url":  "https://github.com/sophia1000/Sophias_sps_patches/releases/download/1.0.3/com.sophia.sps-patcher-1.0.3.zip",
     "changelogUrl":  "https://github.com/sophia1000/Sophias_sps_patches/blob/main/CHANGELOG.md",
     "vpmDependencies":  {
                             "com.vrchat.avatars":  "\u003e=3.5.0 \u003c4.0.0"
