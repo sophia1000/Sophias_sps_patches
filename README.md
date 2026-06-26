@@ -2,6 +2,18 @@
 
 Editor-only VRChat avatar SPS patching tools.
 
+## Install
+
+Open the package page and click `Add to VCC`:
+
+https://sophia1000.github.io/Sophias_sps_patches/
+
+Manual VCC repository URL:
+
+```text
+https://sophia1000.github.io/Sophias_sps_patches/index.json
+```
+
 ## Setup
 
 1. Add this package to a Unity 2022.3 VRChat avatar project through VCC.

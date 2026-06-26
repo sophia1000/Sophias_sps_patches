@@ -79,6 +79,18 @@ Users add this URL to VCC:
 https://sophia1000.github.io/Sophias_sps_patches/index.json
 ```
 
+The user-facing landing page is:
+
+```text
+https://sophia1000.github.io/Sophias_sps_patches/
+```
+
+Its `Add to VCC` button uses:
+
+```text
+vcc://vpm/addRepo?url=https%3A%2F%2Fsophia1000.github.io%2FSophias_sps_patches%2Findex.json
+```
+
 ## Updating Later
 
 For each update:
