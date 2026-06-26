@@ -10,7 +10,7 @@ namespace ContactFix.Editor
 {
     internal class SpsPatcherPrefabWindow : EditorWindow
     {
-        private const string WindowTitle = "SPS Patcher";
+        private const string WindowTitle = "Sophia's SPS Patcher";
 
         [SerializeField] private GameObject _avatar;
         [SerializeField] private Vector2 _scroll;
@@ -21,8 +21,19 @@ namespace ContactFix.Editor
         private List<GameObject> _sceneAvatars = new List<GameObject>();
         private string _status;
 
-        [MenuItem("SPS Patcher/Prefab Installer")]
-        public static void ShowWindow()
+        [MenuItem("Tools/Sophia's SPS Patcher")]
+        public static void ShowToolsWindow()
+        {
+            ShowWindow();
+        }
+
+        [MenuItem("Component/Sophia's SPS Patcher")]
+        public static void ShowComponentWindow()
+        {
+            ShowWindow();
+        }
+
+        private static void ShowWindow()
         {
             var window = GetWindow<SpsPatcherPrefabWindow>(WindowTitle);
             window.minSize = new Vector2(360f, 240f);

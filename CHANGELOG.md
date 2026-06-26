@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4
+
+- Moved the prefab installer menu entries under Tools and Component.
+- Removed the standalone SPS Patcher top-bar menu.
+
 ## 1.0.3
 
 - Changed package license to MIT.
