@@ -59,6 +59,12 @@ The repo includes a GitHub Pages listing action:
 .github/workflows/build-listing.yml
 ```
 
+The listing action reads this file:
+
+```text
+source.json
+```
+
 In GitHub repo settings:
 
 1. Open `Settings > Pages`.
