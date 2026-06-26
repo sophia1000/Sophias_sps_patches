@@ -1,0 +1,54 @@
+﻿name: Build Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  PACKAGE_NAME: com.sophia.sps-patcher
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Package Version
+        id: package
+        shell: bash
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "zipFile=${PACKAGE_NAME}-${VERSION}.zip" >> "$GITHUB_ENV"
+
+      - name: Create Package Zip
+        shell: bash
+        run: |
+          zip -r "$zipFile" . \
+            -x ".git/*" \
+            -x ".github/*" \
+            -x ".agents/*" \
+            -x ".codex/*" \
+            -x "Website/*" \
+            -x "Library/*" \
+            -x "Temp/*" \
+            -x "Obj/*" \
+            -x "Build/*" \
+            -x "Builds/*" \
+            -x "Logs/*" \
+            -x "UserSettings/*" \
+            -x "*.zip" \
+            -x "*.unitypackage"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.package.outputs.version }}
+          name: ${{ steps.package.outputs.version }}
+          files: |
+            ${{ env.zipFile }}
+            package.json

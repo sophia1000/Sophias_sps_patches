@@ -1,0 +1,79 @@
+﻿name: Build Repo Listing
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Build Release]
+    types:
+      - completed
+  release:
+    types: [published, created, edited, unpublished, deleted, released]
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+      - source.json
+      - .github/workflows/build-listing.yml
+      - Website/index.html
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-listing:
+    name: Build VPM Listing
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build VPM index.json
+        shell: bash
+        run: |
+          mkdir -p Website
+          node <<'NODE'
+          const fs = require("fs");
+          const source = JSON.parse(fs.readFileSync("source.json", "utf8"));
+          const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
+
+          const listing = {
+            name: source.name,
+            id: source.id,
+            url: source.url,
+            author: source.author,
+            description: source.description,
+            infoLink: source.infoLink,
+            packages: {
+              [pkg.name]: {
+                versions: {
+                  [pkg.version]: pkg
+                }
+              }
+            }
+          };
+
+          fs.writeFileSync("Website/index.json", JSON.stringify(listing, null, 2) + "\n");
+          NODE
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: Website
+
+      - name: Deploy To GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
