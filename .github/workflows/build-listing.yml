@@ -1,4 +1,4 @@
-﻿name: Build Repo Listing
+name: Build Repo Listing
 
 on:
   workflow_dispatch:
@@ -44,8 +44,12 @@ jobs:
           mkdir -p Website
           node <<'NODE'
           const fs = require("fs");
-          const source = JSON.parse(fs.readFileSync("source.json", "utf8"));
-          const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
+          function readJson(path) {
+            return JSON.parse(fs.readFileSync(path, "utf8").replace(/^\uFEFF/, ""));
+          }
+
+          const source = readJson("source.json");
+          const pkg = readJson("package.json");
 
           const listing = {
             name: source.name,
