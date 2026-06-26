@@ -1,0 +1,69 @@
+name: Build Repo Listing
+
+env:
+  listPublishDirectory: Website
+  pathToCi: ci
+  packageName: com.sophia.sps-patcher
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Build Release]
+    types:
+      - completed
+  release:
+    types: [published, created, edited, unpublished, deleted, released]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-listing:
+    name: Build VPM Listing
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout Local Repository
+        uses: actions/checkout@v4
+
+      - name: Checkout VRChat Listing Automation
+        uses: actions/checkout@v4
+        with:
+          repository: vrchat-community/package-list-action
+          path: ${{ env.pathToCi }}
+          clean: false
+
+      - name: Restore Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.pathToCi }}/.nuke/temp
+            ~/.nuget/packages
+          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
+
+      - name: Build Package Version Listing
+        shell: bash
+        run: ${{ env.pathToCi }}/build.cmd BuildRepoListing --root ${{ env.pathToCi }} --list-publish-directory "$GITHUB_WORKSPACE/${{ env.listPublishDirectory }}" --current-package-name "${{ env.packageName }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.listPublishDirectory }}
+
+      - name: Deploy To GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
