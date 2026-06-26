@@ -2,11 +2,7 @@
   "name": "Sophia's SPS Patches",
   "id": "com.sophia.sps-patches",
   "url": "https://sophia1000.github.io/Sophias_sps_patches/index.json",
-  "author": {
-    "name": "Sophia",
-    "email": "sophia1000@users.noreply.github.com",
-    "url": "https://github.com/sophia1000"
-  },
+  "author": "sophia1000@users.noreply.github.com",
   "description": "Sophia's VRChat avatar SPS patcher packages.",
   "infoLink": {
     "url": "https://github.com/sophia1000/Sophias_sps_patches",

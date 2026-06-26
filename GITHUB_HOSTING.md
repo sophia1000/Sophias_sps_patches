@@ -25,7 +25,7 @@ https://github.com/sophia1000/Sophias_sps_patches
 The package URL in `package.json` points to this release asset:
 
 ```text
-https://github.com/sophia1000/Sophias_sps_patches/releases/download/1.0.0/com.sophia.sps-patcher-1.0.0.zip
+https://github.com/sophia1000/Sophias_sps_patches/releases/download/1.0.1/com.sophia.sps-patcher-1.0.1.zip
 ```
 
 ## Making A Release
@@ -45,7 +45,7 @@ To make the first release:
 It creates a release tagged from the `version` in `package.json`, and uploads:
 
 ```text
-com.sophia.sps-patcher-1.0.0.zip
+com.sophia.sps-patcher-1.0.1.zip
 package.json
 ```
 
