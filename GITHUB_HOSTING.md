@@ -65,6 +65,8 @@ The listing action reads this file:
 source.json
 ```
 
+The workflow generates `Website/index.json` directly from `source.json` and `package.json`, then publishes that folder with GitHub Pages.
+
 In GitHub repo settings:
 
 1. Open `Settings > Pages`.
