@@ -1,0 +1,23 @@
+{
+  "name": "SophiaSpsPatcher.Editor",
+  "rootNamespace": "ContactFix.Editor",
+  "references": [
+    "SophiaSpsPatcher.Runtime",
+    "VRC.SDKBase",
+    "VRC.SDKBase.Editor",
+    "VRC.SDKBase.Editor.BuildPipeline",
+    "VRC.SDK3A",
+    "VRC.SDK3A.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
